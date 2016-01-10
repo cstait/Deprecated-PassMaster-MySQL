@@ -12,32 +12,28 @@ namespace WindowsFormsApplication1
 {
     public partial class frmAdd : Form
     {
-        public frmAdd()
+        private frmMain caller;
+
+        public frmAdd(frmMain mainForm)
         {
             InitializeComponent();
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
+            caller = mainForm;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            //relays information to Database manager to insert text;
+            PassMaster.DBManager.InsertIntoTable(txtUser.Text, txtPass.Text, txtWeb.Text);
+            //resets textboxes to empty strings
+            txtUser.Text = "";
+            txtPass.Text = "";
+            txtWeb.Text = "";
+            //shows confirmation box to user
+            MessageBox.Show("Confirmation", "Entry Successful");
+            //refreshes datagrid
+            caller.refreshDG();
+            
 
-            String connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True";
-
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-            new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "INSERT INTO [Table] (Id, Website, Username, Password) VALUES (5, 5, 5, 5)";
-            cmd.Connection = sqlConnection1;
-
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
         }
 
         private void frmAdd_Load(object sender, EventArgs e)

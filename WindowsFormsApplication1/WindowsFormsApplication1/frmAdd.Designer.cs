@@ -93,7 +93,7 @@
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(154, 20);
             this.txtPass.TabIndex = 6;
-            this.txtPass.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+          
             // 
             // btnAdd
             // 
