@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data;
 using MySql.Data.MySqlClient;
-
+using PassMaster;
 
 namespace WindowsFormsApplication1
 {
@@ -20,6 +13,16 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            //binds the datagrid view to the dataset
+
+            DBManager.createTable();
+            //refreshes the datagrid to show newest information
+            this.refreshDG();
+
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             frmAdd temp = new frmAdd(this);
@@ -27,23 +30,25 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void frmMain_Load(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            //binds the datagrid view to the dataset
-
-            PassMaster.DBManager.createTable();
-            //refreshes the datagrid to show newest information
+            //cycles through each selected row, deleting based on the id tag
+            foreach (DataGridViewRow row in dgPassword.SelectedRows)
+            {
+                string id = row.Cells[0].Value.ToString();
+                Console.WriteLine(id);
+                DBManager.DeleteId(id);
+            }
+            //refreshes datagrid view
             this.refreshDG();
-
-            
-            //dgPassword.DataMember = "password";
-            
         }
 
+
         //rebinds data source to table
-        public void refreshDG ()
+        public void refreshDG()
         {
-            PassMaster.DBManager.createDS();
+            //creates dataset
+            DBManager.createDS();
             dgPassword.AutoGenerateColumns = true;
             DataTable table = new DataTable();
             MySqlDataAdapter temp = PassMaster.DBManager.getDataAdapter();
@@ -52,7 +57,6 @@ namespace WindowsFormsApplication1
             source.DataSource = table;
             dgPassword.DataSource = source;
         }
-
     }
     }
 

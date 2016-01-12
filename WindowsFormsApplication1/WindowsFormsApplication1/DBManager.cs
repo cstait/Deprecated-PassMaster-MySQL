@@ -1,6 +1,7 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.Windows.Forms;
 
 //class serves as the controller access to Database
 
@@ -68,7 +69,7 @@ namespace PassMaster
                 cb = new MySqlCommandBuilder(daPassword);
                 dsPassword = new DataSet();
                 daPassword.Fill(dsPassword, "password");
-                
+
             }
             catch (Exception ex)
             {
@@ -91,7 +92,25 @@ namespace PassMaster
                 cmd.Parameters.AddWithValue("@Website", Website);
                 //executes the command
                 cmd.ExecuteNonQuery();
-                
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            conn.Close();
+        }
+
+        public static void DeleteId(string id)
+        {
+            try
+            {
+                string sql = "DELETE FROM password WHERE Id = @Id;";
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                //adds information from id to placeholders 
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -113,11 +132,5 @@ namespace PassMaster
         }
 
     }
-
-
-    
-
-
-
     }
 

@@ -11,3 +11,14 @@ C:\Users\Cameron\documents\visual studio 2015\Projects\WindowsFormsApplication1\
 C:\Users\Cameron\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\MySql.Data.dll
 C:\Users\Cameron\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\PassMaster.exe
 C:\Users\Cameron\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\PassMaster.pdb
+C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\PassMaster.exe.config
+C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\PassMaster.exe
+C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\PassMaster.pdb
+C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\PassMaster.exe
+C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\PassMaster.pdb
+C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\MySql.Data.dll
+C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\PassMaster.csprojResolveAssemblyReference.cache
+C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.frmMain.resources
+C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.frmAdd.resources
+C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\PassMaster.Properties.Resources.resources
+C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\PassMaster.csproj.GenerateResource.Cache
