@@ -29,7 +29,7 @@ namespace WindowsFormsApplication1
             txtPass.Text = "";
             txtWeb.Text = "";
             //shows confirmation box to user
-            MessageBox.Show("Confirmation", "Entry Successful");
+            MessageBox.Show("Entry Successful", "Confirmation");
             //refreshes datagrid
             caller.refreshDG();
             

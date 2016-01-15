@@ -26,19 +26,19 @@ namespace WindowsFormsApplication1
         private void button1_Click(object sender, EventArgs e)
         {
             frmAdd temp = new frmAdd(this);
-            temp.Visible = true;
+            temp.Show();
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             //cycles through each selected row, deleting based on the id tag
-            foreach (DataGridViewRow row in dgPassword.SelectedRows)
-            {
-                string id = row.Cells[0].Value.ToString();
-                Console.WriteLine(id);
-                DBManager.DeleteId(id);
-            }
+            int selectedrowindex = dgPassword.SelectedCells[0].RowIndex;
+            DataGridViewRow selectedRow = dgPassword.Rows[selectedrowindex];
+            string id = selectedRow.Cells[0].Value.ToString();
+            Console.WriteLine(id);
+            DBManager.DeleteId(id);
+            
             //refreshes datagrid view
             this.refreshDG();
         }
@@ -56,6 +56,19 @@ namespace WindowsFormsApplication1
             BindingSource source = new BindingSource();
             source.DataSource = table;
             dgPassword.DataSource = source;
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            int selectedrowindex = dgPassword.SelectedCells[0].RowIndex;
+            DataGridViewRow selectedRow = dgPassword.Rows[selectedrowindex];
+            string id = selectedRow.Cells[0].Value.ToString();
+            string username = selectedRow.Cells[1].Value.ToString();
+            string password = selectedRow.Cells[2].Value.ToString();
+            string website = selectedRow.Cells[3].Value.ToString();
+
+            frmEdit temp = new frmEdit(this, id, username, password, website);
+            temp.Show();
         }
     }
     }

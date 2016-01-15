@@ -28,13 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.database1DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgPassword = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgPassword)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,6 +53,7 @@
             this.btnEdit.TabIndex = 1;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
@@ -97,7 +95,6 @@
             this.Name = "frmMain";
             this.Text = "PassMaster";
             this.Load += new System.EventHandler(this.frmMain_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgPassword)).EndInit();
             this.ResumeLayout(false);
 
@@ -108,7 +105,6 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.BindingSource database1DataSetBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateChangedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridView dgPassword;
     }

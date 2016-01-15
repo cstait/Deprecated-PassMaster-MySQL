@@ -119,6 +119,31 @@ namespace PassMaster
             conn.Close();
         }
 
+        //updates table based on users information
+        public static void UpdateTable(string id, string username, string password, string website)
+        {
+        try
+            {
+
+
+            string sql = "UPDATE password SET Username = @Username, Password = @Password, Website = @Website, Date = Now() WHERE Id = @Id;";
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            //adds information from id to placeholders
+            cmd.Parameters.AddWithValue("@Username", username); 
+            cmd.Parameters.AddWithValue("@Password", password);
+            cmd.Parameters.AddWithValue("@Website", website);
+            cmd.Parameters.AddWithValue("@Id", id);
+
+            cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            conn.Close();
+        }
+
         //returns dataset
         public static DataSet getDataSet()
         {

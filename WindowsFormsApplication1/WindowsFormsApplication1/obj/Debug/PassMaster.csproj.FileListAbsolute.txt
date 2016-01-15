@@ -22,3 +22,4 @@ C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFor
 C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.frmAdd.resources
 C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\PassMaster.Properties.Resources.resources
 C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\PassMaster.csproj.GenerateResource.Cache
+C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\PassMaster.frmEdit.resources
