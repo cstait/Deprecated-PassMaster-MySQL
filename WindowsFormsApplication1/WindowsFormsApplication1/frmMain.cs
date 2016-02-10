@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using System.Data.SQLite;
 using PassMaster;
 
 namespace WindowsFormsApplication1
@@ -51,7 +51,7 @@ namespace WindowsFormsApplication1
             DBManager.createDS();
             dgPassword.AutoGenerateColumns = true;
             DataTable table = new DataTable();
-            MySqlDataAdapter temp = PassMaster.DBManager.getDataAdapter();
+            SQLiteDataAdapter temp = DBManager.getDataAdapter();
             temp.Fill(table);
             BindingSource source = new BindingSource();
             source.DataSource = table;

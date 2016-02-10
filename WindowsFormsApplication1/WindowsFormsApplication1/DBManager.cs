@@ -1,7 +1,7 @@
 ﻿using System;
-using MySql.Data.MySqlClient;
 using System.Data;
 using System.Windows.Forms;
+using System.Data.SQLite;
 
 //class serves as the controller access to Database
 
@@ -11,52 +11,43 @@ namespace PassMaster
     static class DBManager
     {
         //connection information for application, uses passmaster database on localhost
-        private static string connStr = "server=localhost;user=root;database=passmaster;port=3306;password=root;";
-        private static MySqlConnection conn = new MySqlConnection(connStr);
         private static DataSet dsPassword;
-        private static MySqlDataAdapter daPassword;
-        private static MySqlCommandBuilder cb;
+        private static SQLiteDataAdapter daPassword;
+        private static SQLiteCommandBuilder cb;
+        
+       
+        private static string connStr = "Data Source=pmDB.sqlite;";
+        private static SQLiteConnection conn;
+        
 
         // checks to see if table exists, if it doesn't it creates the table
         public static void createTable()
         {
-            try
-            {
-                Console.WriteLine("Connecting to MySQL...");
-                conn.Open();
-                string sql;
-                MySqlCommand cmd;
-                //checks to see if table already exists,
-                sql = "SHOW TABLES LIKE 'Password';";
-                cmd = new MySqlCommand(sql, conn);
-                MySqlDataReader rdr = cmd.ExecuteReader();
-                conn.Close();
-
-                if (!rdr.HasRows)
-                {
-                    conn.Open();
-                    sql = "CREATE TABLE Password" +
-                              "(Id int NOT NULL AUTO_INCREMENT, " +
-                               "Username VARCHAR(100), " +
-                               "Password VARCHAR(100), " +
-                               "Website  VARCHAR(100), " +
-                               "Date    DATE, " +
-                               "PRIMARY KEY (id))";
-                    //creates table based on sql string
-                    cmd = new MySqlCommand(sql, conn);
-                    cmd.ExecuteNonQuery();
-
+            
+                if (System.IO.File.Exists("pmDB.sqlite")){
+                    Console.WriteLine("Error file exists!");
+                }
+                else {
+                    SQLiteConnection.CreateFile("pmDB.sqlite");
                 }
 
-                conn.Close();
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-            conn.Close();
-            Console.WriteLine("Done.");
+                conn = new SQLiteConnection(connStr);
+                conn.Open();
+                string sql;
+                SQLiteCommand cmd;
+                //checks to see if table already exists, creates table otherwise
+                sql = "CREATE TABLE if not exists Password" +
+                            "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                            "Username VARCHAR(100), " +
+                            "Password VARCHAR(100), " +
+                            "Website  VARCHAR(100), " +
+                            "Date    DATE);";
+                //creates table based on sql string
+                cmd = new SQLiteCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+           
         }
 
         public static void createDS()
@@ -64,9 +55,9 @@ namespace PassMaster
             try
             {
                 //creates dataset which holds a copy of the table
-                string sql = "SELECT Id, Username, Password, Website, Date from password;";
-                daPassword = new MySqlDataAdapter(sql, conn);
-                cb = new MySqlCommandBuilder(daPassword);
+                string sql = "SELECT Id, Username, Password, Website, Date from Password;";
+                daPassword = new SQLiteDataAdapter(sql, conn);
+                cb = new SQLiteCommandBuilder(daPassword);
                 dsPassword = new DataSet();
                 daPassword.Fill(dsPassword, "password");
 
@@ -83,9 +74,9 @@ namespace PassMaster
             try
             {
                 //insert sql command string with injection
-                string sql = "INSERT INTO password (Username, Password, Website, Date) VALUES (@Username, @Password, @Website, Now());";
+                string sql = "INSERT INTO Password (Username, Password, Website, Date) VALUES (@Username, @Password, @Website, datetime());";
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                SQLiteCommand cmd = new SQLiteCommand(sql, conn);
                 //adds information from textboxes to placeholders 
                 cmd.Parameters.AddWithValue("@Username", Username);
                 cmd.Parameters.AddWithValue("@Password", Password);
@@ -105,9 +96,9 @@ namespace PassMaster
         {
             try
             {
-                string sql = "DELETE FROM password WHERE Id = @Id;";
+                string sql = "DELETE FROM Password WHERE Id = @Id;";
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                SQLiteCommand cmd = new SQLiteCommand(sql, conn);
                 //adds information from id to placeholders 
                 cmd.Parameters.AddWithValue("@Id", id);
                 cmd.ExecuteNonQuery();
@@ -126,9 +117,9 @@ namespace PassMaster
             {
 
 
-            string sql = "UPDATE password SET Username = @Username, Password = @Password, Website = @Website, Date = Now() WHERE Id = @Id;";
+            string sql = "UPDATE Password SET Username = @Username, Password = @Password, Website = @Website, Date = datetime() WHERE Id = @Id;";
             conn.Open();
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
             //adds information from id to placeholders
             cmd.Parameters.AddWithValue("@Username", username); 
             cmd.Parameters.AddWithValue("@Password", password);
@@ -151,7 +142,7 @@ namespace PassMaster
         }
 
         //returns datadaptor
-        public static MySqlDataAdapter getDataAdapter()
+        public static SQLiteDataAdapter getDataAdapter()
         {
             return daPassword;
         }

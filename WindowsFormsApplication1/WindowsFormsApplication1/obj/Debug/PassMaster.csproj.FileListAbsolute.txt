@@ -23,3 +23,6 @@ C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFor
 C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\PassMaster.Properties.Resources.resources
 C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\PassMaster.csproj.GenerateResource.Cache
 C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\PassMaster.frmEdit.resources
+C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\System.Data.SQLite.dll
+C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\System.Data.SQLite.pdb
+C:\Users\Cameron\Documents\GitHub\PassMaster\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\System.Data.SQLite.xml
